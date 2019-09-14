@@ -1,8 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/movies/movies",
+    "pages/movieDetail/movieDetail",
     "pages/list/list",
     "pages/detail/detail"
+    
     
   ],
   "window": {
@@ -13,5 +16,21 @@
     "backgroundTextStyle": "light",
     "enablePullDownRefresh": false
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/list/list",
+        "text": "文与字",
+        "iconPath": "/img/tab/yuedu.png",
+        "selectedIconPath": "/img/tab/yuedu_hl.png"
+      },
+      {
+        "pagePath": "pages/movies/movies",
+        "text": "电影频道",
+        "iconPath": "/img/tab/dianying.png",
+        "selectedIconPath": "/img/tab/dianying_hl.png"
+      }
+    ]
+  }
 }

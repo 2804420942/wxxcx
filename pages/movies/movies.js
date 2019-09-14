@@ -1,41 +1,28 @@
-// pages/index/index.js
+// pages/movies/movies.js
+let MOVIE_URL = "http://t.yushu.im/v2/movie/top250";
+let appDatas = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    name: "hello world",
-    src: "/img/wechat.jpg",
-    userInfo: "",
-    isShow: true
+    moviesArr: []
   },
-  getMyInfo:function(e){
-    console.log(e.detail.userInfo);
-    let info = e.detail.userInfo;
-    this.setData({
-      name:info.nickName,
-      src:info.avatarUrl,
-      isShow: false
-    })
-  },
-  handleClick(){
-    wx.switchTab({
-      url: '/pages/list/list',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.getUserInfo({
-      success:(data)=>{
-        this.setData({
-          name: data.userInfo.nickName,
-          src: data.userInfo.avatarUrl,
-          userInfo: data.userInfo
-        })
+    wx.request({
+      url: MOVIE_URL,
+      success: (data)=>{
         console.log(data);
+        this.setData({
+          moviesArr: data.data.subjects,
+          
+        })
+        appDatas.data.moviesArr = data.data.subjects;
       }
     })
   },

@@ -1,42 +1,22 @@
-// pages/index/index.js
+// pages/movieDetail/movieDetail.js
+let appDatas = getApp();
+console.log(appDatas);
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    name: "hello world",
-    src: "/img/wechat.jpg",
-    userInfo: "",
-    isShow: true
+    movieDetail: {}
   },
-  getMyInfo:function(e){
-    console.log(e.detail.userInfo);
-    let info = e.detail.userInfo;
-    this.setData({
-      name:info.nickName,
-      src:info.avatarUrl,
-      isShow: false
-    })
-  },
-  handleClick(){
-    wx.switchTab({
-      url: '/pages/list/list',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.getUserInfo({
-      success:(data)=>{
-        this.setData({
-          name: data.userInfo.nickName,
-          src: data.userInfo.avatarUrl,
-          userInfo: data.userInfo
-        })
-        console.log(data);
-      }
+    let index = options.index;
+    this.setData({
+      movieDetail: appDatas.data.moviesArr[index]
     })
   },
 

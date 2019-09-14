@@ -1,5 +1,6 @@
 // pages/detail/detail.js
 let datas = require("../../datas/list-data.js");
+let appDatas = getApp();
 Page({
 
   /**
@@ -50,6 +51,11 @@ Page({
       wx.pauseBackgroundAudio();
     }
   },
+  handleShare(){
+    wx.showActionSheet({
+      itemList: ["分享到微信","分享到qq空间","分享到微博"],
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -73,6 +79,20 @@ Page({
         isCollected: false
       })
     }
+    wx.onBackgroundAudioPlay(()=>{
+      this.setData({
+        isMusicPlay:true
+      });
+      appDatas.data.isPlay = true;
+      appDatas.data.pageIndex = index;
+    });
+    wx.onBackgroundAudioPause(() => { 
+      this.setData({ 
+        isMusicPlay: false 
+      }); 
+      appDatas.data.isPlay = false;
+      //appDatas.data.pageIndex = index;
+    });
   },
 
   /**
